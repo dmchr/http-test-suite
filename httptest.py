@@ -5,6 +5,7 @@ import sys
 import socket
 import httplib
 import unittest
+import xmlrunner
 
 arg_host = "localhost"
 arg_port = 80
@@ -281,19 +282,6 @@ class HttpServer(unittest.TestCase):
     self.assertEqual(len(data), 35344)
     self.assertEqual(ctype, "application/x-shockwave-flash")
 
-loader = unittest.TestLoader()
-suite = unittest.TestSuite()
-a = loader.loadTestsFromTestCase(HttpServer)
-suite.addTest(a)
 
-class NewResult(unittest.TextTestResult):
-  def getDescription(self, test):
-    doc_first_line = test.shortDescription()
-    return doc_first_line or ""
-
-class NewRunner(unittest.TextTestRunner):
-  resultclass = NewResult
-
-runner = NewRunner(verbosity=2)
-runner.run(suite)
-
+if __name__ == '__main__':
+    unittest.main(testRunner=xmlrunner.XMLTestRunner(output="python_unittests_xml"))
