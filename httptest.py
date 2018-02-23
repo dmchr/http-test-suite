@@ -5,6 +5,7 @@ import sys
 import socket
 import httplib
 import unittest
+import HtmlTestRunner
 import xmlrunner
 
 arg_host = "localhost"
@@ -284,4 +285,5 @@ class HttpServer(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main(testRunner=xmlrunner.XMLTestRunner(output="python_unittests_xml"))
+    # unittest.main(testRunner=xmlrunner.XMLTestRunner(output="python_unittests_xml"))
+    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='python_unittests_html'))
